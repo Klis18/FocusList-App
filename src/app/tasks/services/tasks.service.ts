@@ -42,4 +42,9 @@ export class TasksService {
     const index = this.taskList.findIndex(x => x.id == id);
     this.taskList.splice(index,1);
   }
+
+  searchTasks(searchWord: string){
+    this.taskList = this.taskList.filter(x => x.description == searchWord);
+    return this.taskList;
+  }
 }

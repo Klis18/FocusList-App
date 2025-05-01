@@ -1,11 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TaskItemComponent } from '../../components/task-item/task-item.component';
+import { Task } from '../../interfaces/task.interface';
+import { TasksService } from '../../services/tasks.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-task-list',
-  imports: [],
+  imports: [
+    CommonModule,
+    TaskItemComponent
+  ],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
-export default class TaskListComponent {
+export default class TaskListComponent implements OnInit{
+
+  tasks: Task[] = []
+
+  constructor(private tasksService: TasksService){}
+
+  ngOnInit(): void {
+    this.tasks = this.tasksService.obtenerListadoTareas();
+  }
+
+
 
 }
