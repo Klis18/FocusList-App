@@ -35,7 +35,13 @@ export class TasksService {
 
   updateStatusTask(id: number){
     const index = this.taskList.findIndex(x => x.id == id);
-    this.taskList[index].state = TaskState.End;
+    const estado = this.taskList[index].state;
+    if(estado == TaskState.Pending){
+      this.taskList[index].state = TaskState.End;
+    }else
+    if(estado == TaskState.End){
+      this.taskList[index].state = TaskState.Pending;
+    }
   }
 
   deleteTask(id: number){
@@ -43,8 +49,4 @@ export class TasksService {
     this.taskList.splice(index,1);
   }
 
-  searchTasks(searchWord: string){
-    this.taskList = this.taskList.filter(x => x.description == searchWord);
-    return this.taskList;
-  }
 }
