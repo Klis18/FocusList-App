@@ -1,7 +1,9 @@
 <div class="px-12 py-8">
     <h1 class="text-3xl">Lista de Tareas</h1>
     <hr/>
-
+    <div class="my-4">
+        <app-add-task></app-add-task>
+    </div>
     <div class="mt-4">
         @for(task of tasks; track task.id){
             <app-task-item [task]="task"></app-task-item>

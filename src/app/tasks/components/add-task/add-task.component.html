@@ -1,0 +1,9 @@
+<div class="flex">
+    <input type="text" [(ngModel)]="newTask" class="w-full px-4 py-2 shadow-lg rounded-xl border-2" placeholder="Escribe aquí la tarea" (keyup.enter)="addTask()">
+    <button class="text-white button-background rounded-lg px-2 ml-2 flex items-center" (click)="addTask()">
+        <mat-icon>
+            add
+        </mat-icon>
+        Agregar
+    </button>
+</div>

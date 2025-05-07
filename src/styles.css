@@ -14,7 +14,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
-.quicksand-regular, p, span {
+.quicksand-regular, p, span, input{
     font-family: "Quicksand", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;

@@ -29,7 +29,10 @@ export class TasksService {
     return this.taskList;
   }
 
-  insertarTarea(newTask: Task){
+  insertarTarea(task: string){
+    const id = this.taskList.length + 1;
+    const status = TaskState.Pending;
+    const newTask = {id: id, description: task, state:status} as Task
     this.taskList.push(newTask);
   }
 

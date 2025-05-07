@@ -21,6 +21,7 @@ export class TaskItemComponent {
 
   updateStatusTask(id: number){
     this.taskServices.updateStatusTask(id);
+
   }
 
   deleteTask(id:number){
