@@ -6,5 +6,6 @@ export interface Task{
 
 export enum TaskState{
     Pending ='Pendiente',
+    InProcess = 'En Proceso',
     End = 'Finalizado',
 }

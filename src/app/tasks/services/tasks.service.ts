@@ -36,15 +36,18 @@ export class TasksService {
     this.taskList.push(newTask);
   }
 
-  updateStatusTask(id: number){
+  updateStatusTask(id: number, state:TaskState){
     const index = this.taskList.findIndex(x => x.id == id);
-    const estado = this.taskList[index].state;
-    if(estado == TaskState.Pending){
-      this.taskList[index].state = TaskState.End;
-    }else
-    if(estado == TaskState.End){
-      this.taskList[index].state = TaskState.Pending;
-    }
+    this.taskList[index].state = state;
+
+    // const estado = this.taskList[index].state;
+    // if(estado == TaskState.Pending){
+    //   this.taskList[index].state = TaskState.End;
+    // }else
+    // if(estado == TaskState.End){
+      // this.taskList[index].state = TaskState.Pending;
+    // } 
+
   }
 
   deleteTask(id: number){

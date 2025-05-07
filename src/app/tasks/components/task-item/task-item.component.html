@@ -1,17 +1,26 @@
 <div class="px-4 py-2 rounded-2xl w-full border-2 shadow-sm mb-2 flex flex-wrap">
         <div class="flex items-center">
-            <input type="radio" name="radio-2" class="radio size-6" (click)="updateStatusTask(task().id)">
+            <input type="radio" name="radio-2" class="radio size-6" (click)="updateStatusTask(task().id, task().state)">
+            @if(task().state !== 'Finalizado'){
+                <button class="rounded-full bg-gray-900 text-white flex items-center ml-2" (click)="changeIconState(task().id, task().state)">
+                    <mat-icon  class="text-base">
+                        {{iconName}}
+                    </mat-icon>
+                </button>
+            }
             <span class="ml-2" [ngClass]="{'line-through': task().state == 'Finalizado'}">{{task().description}}</span>
         </div>
         <div class="grow"></div>
         <div class="flex items-center">
             <span class="rounded-full size-4 shadow-lg" 
                 [ngClass]="{'bg-gray-500': task().state =='Pendiente',
+                            'bg-yellow-500': task().state == 'En Proceso',
                             'bg-green-300': task().state =='Finalizado'
                 }">
             </span>
             <span class="ml-2" 
                 [ngClass]="{'text-gray-500': task().state =='Pendiente',
+                            'text-yellow-500': task().state == 'En Proceso',
                             'text-green-500': task().state =='Finalizado'}">
                 {{task().state}}
             </span>
