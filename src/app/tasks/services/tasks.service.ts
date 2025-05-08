@@ -36,25 +36,22 @@ export class TasksService {
     return this.taskList;
   }
 
-  insertarTarea(task: string){
+  insertarTarea(task: string, programDate: Date, pomodoros: number){
     const id = this.taskList.length + 1;
     const status = TaskState.Pending;
-    const newTask = {id: id, description: task, state:status} as Task
+    const newTask = {
+                      id: id, 
+                      description: task, 
+                      state:status, 
+                      programDay:programDate, 
+                      pomodoros:pomodoros
+                    } as Task
     this.taskList.push(newTask);
   }
 
   updateStatusTask(id: number, state:TaskState){
     const index = this.taskList.findIndex(x => x.id == id);
     this.taskList[index].state = state;
-
-    // const estado = this.taskList[index].state;
-    // if(estado == TaskState.Pending){
-    //   this.taskList[index].state = TaskState.End;
-    // }else
-    // if(estado == TaskState.End){
-      // this.taskList[index].state = TaskState.Pending;
-    // } 
-
   }
 
   deleteTask(id: number){

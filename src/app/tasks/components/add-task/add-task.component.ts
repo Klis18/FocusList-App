@@ -3,13 +3,11 @@ import { Component } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 import { MatIconModule } from '@angular/material/icon';
-import { MatCard } from '@angular/material/card';
-import { MatCalendar, MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
-
-import { TasksService } from '../../services/tasks.service';
+import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+
+import { TasksService } from '../../services/tasks.service';
 
 @Component({
   selector: 'app-add-task',
@@ -17,10 +15,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     FormsModule,
     CommonModule,
 
-    // MatCalendar,
-    // MatCard,
     MatDatepickerModule,
-    MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatNativeDateModule
@@ -31,15 +26,19 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 export class AddTaskComponent {
 
   newTask: string = '';
-  selected: Date = new Date(Date.now());
-
-  exampleHeader:any;
+  programDate: Date = new Date(Date.now());
+  pomodorosQuantity: number = 1; 
 
   constructor(private taskService: TasksService){}
 
   addTask(){
-    this.taskService.insertarTarea(this.newTask);
+    this.taskService.insertarTarea(this.newTask, this.programDate, this.pomodorosQuantity);
+    this.resetForm();
+  }
+
+  resetForm(){
     this.newTask = '';
-    console.log('Fecha', this.selected);
+    this.programDate = new Date(Date.now());
+    this.pomodorosQuantity = 1;
   }
 }

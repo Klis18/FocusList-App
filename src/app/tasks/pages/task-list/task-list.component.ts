@@ -20,6 +20,7 @@ import { PomodoroComponent } from '../../components/pomodoro/pomodoro.component'
 export default class TaskListComponent implements OnInit{
 
   tasks: Task[] = []
+  pomodorosMinutes: number = 25 ;
 
   constructor(private tasksService: TasksService){}
 
@@ -27,6 +28,9 @@ export default class TaskListComponent implements OnInit{
     this.tasks = this.tasksService.obtenerListadoTareas();
   }
 
+  receivePomodorosQuantity(pomodoros: number){
+    this.pomodorosMinutes = pomodoros * 25;
+  }
 
 
 }

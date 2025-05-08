@@ -3,7 +3,7 @@
     <hr/>
     <div class="my-4 w-full background-pomodoro">
         <div class="background-shadow w-full h-full py-4 flex items-center justify-center">
-            <app-pomodoro></app-pomodoro>
+            <app-pomodoro [pomodoroTaskQuantity]="pomodorosMinutes"></app-pomodoro>
         </div>
     </div>
     <div class="my-8">
@@ -11,7 +11,7 @@
     </div>
     <div class="mt-4">
         @for(task of tasks; track task.id){
-            <app-task-item [task]="task"></app-task-item>
+            <app-task-item [task]="task" (pomodorosTask)="receivePomodorosQuantity($event)"></app-task-item>
         }
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Task, TaskState } from '../../interfaces/task.interface';
 import { CommonModule, NgClass } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
@@ -21,6 +21,9 @@ registerLocaleData(localEc);
 export class TaskItemComponent {
 
   task = input.required<Task>();
+
+  pomodorosTask = output<number>();
+
   iconName: string = 'play_arrow';
 
   constructor(private taskServices: TasksService){}
@@ -35,9 +38,14 @@ export class TaskItemComponent {
     this.taskServices.deleteTask(id);
   }
 
-  changeIconState(id:number,state: string){
+  changeIconState(id:number,state: string, pomodorosQuantity: number){
     console.log('Datos', id, state);
     this.taskServices.updateStatusTask(id, TaskState.InProcess);
-    this.iconName = 'stop'
+    this.iconName = 'stop',
+    this.sendTime(pomodorosQuantity);
+  }
+
+  sendTime(pomodoros: number){
+    this.pomodorosTask.emit(pomodoros);
   }
 }
