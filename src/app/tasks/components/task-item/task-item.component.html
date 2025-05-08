@@ -9,6 +9,7 @@
                 </button>
             }
             <span class="ml-2" [ngClass]="{'line-through': task().state == 'Finalizado'}">{{task().description}}</span>
+            <span class="ml-4 text-gray-400">{{task().programDay | date:'mediumDate':'localEc'}}</span>
         </div>
         <div class="grow"></div>
         <div class="flex items-center">

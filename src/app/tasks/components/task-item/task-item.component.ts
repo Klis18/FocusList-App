@@ -1,12 +1,17 @@
 import { Component, input } from '@angular/core';
 import { Task, TaskState } from '../../interfaces/task.interface';
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import { TasksService } from '../../services/tasks.service';
+import { registerLocaleData } from '@angular/common';
+import localEc from '@angular/common/locales/es-EC'
+
+registerLocaleData(localEc);
 
 @Component({
   selector: 'app-task-item',
   imports: [
+    CommonModule,
     MatIconModule,
     NgClass
   ],

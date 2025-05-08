@@ -10,17 +10,24 @@ export class TasksService {
     {
       id: 1,
       description: 'Crear invitación digital de quinceañera',
-      state: TaskState.Pending
+      state: TaskState.Pending,
+      programDay: new Date(Date.now()),
+      pomodoros: 1
     },
     {
       id: 2,
       description: 'Crear publicidad en redes sociales',
-      state: TaskState.Pending
+      state: TaskState.Pending,
+      programDay: new Date(Date.now()),
+      pomodoros: 2
+
     },
     {
       id: 3,
       description: 'Subir post a instagram',
-      state: TaskState.Pending
+      state: TaskState.Pending,
+      programDay: new Date(Date.now()),
+      pomodoros:1
     }
   ]
   constructor() { }
