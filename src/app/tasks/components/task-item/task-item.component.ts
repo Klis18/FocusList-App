@@ -40,12 +40,17 @@ export class TaskItemComponent {
 
   changeIconState(id:number,state: string, pomodorosQuantity: number){
     console.log('Datos', id, state);
-    this.taskServices.updateStatusTask(id, TaskState.InProcess);
-    this.iconName = 'stop',
-    this.sendTime(pomodorosQuantity);
+
+    if(state == TaskState.Pending){
+      this.taskServices.updateStatusTask(id, TaskState.InProcess);
+      this.iconName = 'stop';
+      this.taskServices.startPomodoro(pomodorosQuantity);
+    }
+    else{
+      this.taskServices.updateStatusTask(id, TaskState.Pending);
+      this.iconName = 'play_arrow';
+      this.taskServices.stopPomodoro();
+    }
   }
 
-  sendTime(pomodoros: number){
-    this.pomodorosTask.emit(pomodoros);
-  }
 }

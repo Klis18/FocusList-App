@@ -1,4 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, input, OnDestroy, OnInit, signal, Signal } from '@angular/core';
+import { TasksService } from '../../services/tasks.service';
+import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
 
 @Component({
   selector: 'app-pomodoro',
@@ -6,19 +8,21 @@ import { Component, input } from '@angular/core';
   templateUrl: './pomodoro.component.html',
   styleUrl: './pomodoro.component.css'
 })
-export class PomodoroComponent {
+export class PomodoroComponent implements OnInit, OnDestroy{
 
-  pomodoroTaskQuantity = input<number>();
+  // pomodoroTaskQuantity = input<number>();
+  tiempoRestante: string = '';
+  pomodoroInterval: any;
 
-  changeTime(){
-    const tiempoPomodoroSegundos = this.pomodoroTaskQuantity()!* 60;
-    const horas = Math.floor(tiempoPomodoroSegundos / 3600); 
-    console.log('Horas', horas);
-    const minutos = Math.floor((tiempoPomodoroSegundos % 3600)/60); 
-    console.log('Minutos', minutos);
-    const segundos = tiempoPomodoroSegundos % 60; 
-    return `${String(horas).padStart(2, '0')}:${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2,'0')}`;
-  }
+  constructor(private taskServices:TasksService){}
   
+  ngOnInit(): void {
+    this.pomodoroInterval = setInterval(()=>{
+      this.tiempoRestante = this.taskServices.showCountDown();
+    },1000);
+  }
+  ngOnDestroy(): void {
+    clearInterval(this.pomodoroInterval);
+  }
 
 }
