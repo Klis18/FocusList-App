@@ -1,6 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { Task, TaskState } from '../interfaces/task.interface';
-import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +31,8 @@ export class TasksService {
     }
   ]
   tiempoRestante: string = '00:00:00';
+  tiempoPomodoroSegundosRestantes: number = 0;
+  tiempoPomodoroTotalSegundos: number = 0;
   intervalo!: any;
 
   constructor() { }
@@ -65,11 +66,12 @@ export class TasksService {
 
   startPomodoro(pomodorosQuantity: number){
     const pomodorosMinutes = pomodorosQuantity * 25;
+    this.tiempoPomodoroTotalSegundos = pomodorosMinutes *60;
 
-     let tiempoPomodoroSegundos = pomodorosMinutes!* 60;
+     this.tiempoPomodoroSegundosRestantes = pomodorosMinutes!* 60;
         this.intervalo = setInterval(()=>{
-          tiempoPomodoroSegundos -= 1;
-          this.changeTime(tiempoPomodoroSegundos);
+          this.tiempoPomodoroSegundosRestantes -= 1;
+          this.changeTime(this.tiempoPomodoroSegundosRestantes);
         },1000);
   }
 

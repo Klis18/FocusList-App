@@ -7,12 +7,20 @@ export const routes: Routes = [
         component: LayoutComponent,
         children:[
             {
-                path: 'todos',
+                path: 'all-tasks',
                 loadComponent: () => import('./tasks/pages/task-list/task-list.component')
             },
             {
+                path:'tasks-today',
+                loadComponent: () => import('./tasks/pages/tasks-today/tasks-today.component')
+            },
+            {
+                path:'tasks-pending',
+                loadComponent: () => import('./tasks/pages/tasks-pending/tasks-pending.component') 
+            },
+            {
                 path:'**',
-                redirectTo: 'todos'
+                redirectTo: 'all-tasks'
             }
         ]
     },

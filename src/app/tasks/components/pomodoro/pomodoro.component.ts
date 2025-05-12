@@ -1,6 +1,5 @@
-import { Component, input, OnDestroy, OnInit, signal, Signal } from '@angular/core';
+import { Component, OnDestroy, OnInit} from '@angular/core';
 import { TasksService } from '../../services/tasks.service';
-import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
 
 @Component({
   selector: 'app-pomodoro',
@@ -10,19 +9,29 @@ import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
 })
 export class PomodoroComponent implements OnInit, OnDestroy{
 
-  // pomodoroTaskQuantity = input<number>();
   tiempoRestante: string = '';
   pomodoroInterval: any;
+
+  porcentajeAvanzado: number = 0;
 
   constructor(private taskServices:TasksService){}
   
   ngOnInit(): void {
     this.pomodoroInterval = setInterval(()=>{
       this.tiempoRestante = this.taskServices.showCountDown();
+      this.calcularPorcentajeAvance();
     },1000);
   }
+  
   ngOnDestroy(): void {
     clearInterval(this.pomodoroInterval);
+  }
+
+  calcularPorcentajeAvance(){
+    const totalSegundos = this.taskServices.tiempoPomodoroTotalSegundos;
+    const segundosRestantes = this.taskServices.tiempoPomodoroSegundosRestantes;
+    this.porcentajeAvanzado = ((totalSegundos - segundosRestantes)/totalSegundos)*100;
+    console.log('Porcentaje avanzado', this.porcentajeAvanzado);
   }
 
 }

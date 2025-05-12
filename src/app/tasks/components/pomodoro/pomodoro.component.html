@@ -1,6 +1,7 @@
     <div
       class="radial-progress text-gray-200 text-3xl"
-      style="--value:70; --size:10rem; --thickness: 7px;"
+      style="--size:10rem; --thickness: 7px;"
+      [style]="{'--value':porcentajeAvanzado}"
       role="progressbar">
       <span>
         {{tiempoRestante}}
