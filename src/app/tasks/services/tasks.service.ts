@@ -93,4 +93,15 @@ export class TasksService {
     return this.tiempoRestante;
   }
 
+  filtrarTareasHoy(): Task[]{
+    const fechaHoy = new Date(Date.now());
+    const tareasHoy = this.taskList.filter(x => x.programDay === fechaHoy);
+    return tareasHoy;
+  }
+
+  filtrarTareasPendientes(): Task[]{
+    const tareasPendientes = this.taskList.filter(x => x.state == TaskState.Pending || x.state == TaskState.InProcess);
+    return tareasPendientes;
+  }
+
 }

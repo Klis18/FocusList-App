@@ -6,6 +6,14 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.background-pomodoro{
+    background-image: url('/images/background3.jpg');
+    background-size: cover;
+}
+
+.background-shadow{
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
 .montserrat-regular, h1, button{
     font-family: "Montserrat", sans-serif;
